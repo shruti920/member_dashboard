@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* @theme - Tailwind v4 theme configuration */
+/* @apply - Tailwind utility directive */
+
+:root {
+  /* WebD Yellow & Gold Palette - Tech Society Vibes */
+  --color-primary-yellow: #F5C518;
+  --color-deep-gold: #C4A000;
+  --color-pale-glow: #FFF7B2;
+  --color-void-black: #000000;
+  --color-surface-dark: #1A1A1A;
+  --color-border-gray: #2A2A2A;
+  --color-off-white: #FFFFFF;
+  --color-muted-ash: #888888;
+  
+  /* Grayscale for backgrounds */
+  --color-gray-50: #FAFAFA;
+  --color-gray-100: #F5F5F5;
+  --color-gray-200: #EEEEEE;
+  --color-gray-300: #E0E0E0;
+  --color-gray-400: #BDBDBD;
+  --color-gray-500: #9E9E9E;
+  --color-gray-600: #757575;
+  --color-gray-700: #616161;
+  --color-gray-800: #424242;
+  --color-gray-900: #212121;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  
+  --color-primary: #F5C518;
+  --color-primary-dark: #C4A000;
+  --color-primary-light: #FFF7B2;
+  --color-secondary: #1A1A1A;
+  --color-accent: #F5C518;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  
+  --color-border: #2A2A2A;
+  --color-input: #1A1A1A;
+  --color-background: #0F0F0F;
+  --color-foreground: #FFFFFF;
+}
+
+@layer base {
+  * {
+    @apply border-[#2A2A2A] outline-[#F5C518]/50;
+  }
+  
+  body {
+    @apply bg-[#0F0F0F] text-[#FFFFFF];
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-[#F5C518];
+  }
+  
+  a {
+    @apply text-[#F5C518] hover:text-[#FFF7B2] transition-colors;
+  }
+  
+  button {
+    @apply transition-all;
+  }
+  
+  .btn-primary {
+    @apply bg-[#F5C518] text-[#000000] hover:bg-[#C4A000] px-6 py-2 rounded-lg font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-[#1A1A1A] text-[#F5C518] hover:bg-[#2A2A2A] px-6 py-2 rounded-lg font-medium border border-[#F5C518];
+  }
+  
+  .card-primary {
+    @apply bg-[#1A1A1A] border border-[#2A2A2A] rounded-lg shadow-lg hover:shadow-xl hover:border-[#F5C518] transition-all;
+  }
+  
+  .text-muted {
+    @apply text-[#888888];
+  }
+  
+  /* Glowing text effect for logo/heading */
+  .glow-text {
+    @apply text-[#F5C518] drop-shadow-[0_0_8px_rgba(245,197,24,0.6)];
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  /* Shimmer Animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 2s infinite;
+    background: linear-gradient(
+      90deg,
+      rgba(245, 197, 24, 0) 0%,
+      rgba(245, 197, 24, 0.3) 50%,
+      rgba(245, 197, 24, 0) 100%
+    );
+    background-size: 1000px 100%;
+  }
+  
+  /* Glitch Animation */
+  @keyframes glitch {
+    0%, 100% {
+      clip-path: inset(40% 0 61% 0);
+      transform: translate(-2px, -2px);
+    }
+    20% {
+      clip-path: inset(92% 0 1% 0);
+      transform: translate(2px, 2px);
+    }
+    40% {
+      clip-path: inset(43% 0 1% 0);
+      transform: translate(-2px, 2px);
+    }
+    60% {
+      clip-path: inset(25% 0 58% 0);
+      transform: translate(2px, -2px);
+    }
+    80% {
+      clip-path: inset(54% 0 7% 0);
+      transform: translate(-2px, -2px);
+    }
+  }
+  
+  .glitch-text {
+    animation: glitch 0.6s ease-in-out;
+  }
+  
+  /* Typewriter Animation */
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink {
+    0%, 49% {
+      border-right: 3px solid #F5C518;
+    }
+    50%, 100% {
+      border-right: 3px solid transparent;
+    }
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typewriter 3.5s steps(40, end);
+  }
+  
+  .typewriter-blink {
+    animation: typewriter 3.5s steps(40, end), blink 0.75s step-end infinite;
+  }
+  
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Pulse Glow Animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(245, 197, 24, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px rgba(245, 197, 24, 0);
+    }
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+  
+  /* Slide In Animation */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+  
+  /* Bounce Animation */
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    70% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .bounce-in {
+    animation: bounce-in 0.6s ease-out;
+  }
+  
+  /* Count Up Animation - will be handled by JS */
+  @keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .count-up {
+    animation: countUp 0.5s ease-out;
+  }
+}
